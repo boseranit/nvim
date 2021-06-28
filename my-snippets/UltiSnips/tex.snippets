@@ -1,0 +1,271 @@
+global !p
+texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(i for i in reversed(synstackids) if i in texIgnoreMathZoneIds or i in texMathZoneIds)
+		return first != ignore
+	except StopIteration:
+		return False
+endglobal
+
+#########
+# Options
+#########
+# b beginning of a line
+# i in-word expansion (can expand within a word)
+# w word boundary (cannot expand within a word)
+# r regular expression
+# A automatic expansion (trigger key not needed)
+
+priority 1
+##############
+# MATH STUFF #
+##############
+
+snippet eqn "Equation without a number" b
+\begin{equation*}
+	${0:${VISUAL}}
+\end{equation*}
+endsnippet
+
+snippet al "Align" b
+\begin{align}
+	${0:${VISUAL}}
+\end{align}
+endsnippet
+
+snippet aln "Align without a number" b
+\begin{align*}
+	${0:${VISUAL}}
+\end{align*}
+endsnippet
+
+snippet enu "Enumerate" bA
+\begin{enumerate}[(a), leftmargin=\parindent]
+    \item 
+$0
+\end{enumerate}
+endsnippet
+
+# https://castel.dev/post/lecture-notes-1/
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+endsnippet
+
+snippet dm "Math" wA
+\[
+$1
+\] 
+$0
+endsnippet
+
+snippet '([A-Za-z])(\d)' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "math()"
+snippet sq "\sqrt{}" iA
+\sqrt{${1:${VISUAL}}} $0
+endsnippet
+
+context "math()"
+snippet sr "^2" iA
+^2
+endsnippet
+
+context "math()"
+snippet cb "^3" iA
+^3
+endsnippet
+
+context "math()"
+snippet td "superscript" iA
+^{$1}$0
+endsnippet
+
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet / "Fraction" i
+\\frac{${VISUAL}}{$1}$0
+endsnippet
+
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+snippet '^.*\)/' "() frac" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i-=1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+priority 10
+context "math()"
+snippet "hat" "hat" riA
+\hat{$1}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])hat" "hat" riA
+\hat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+context "math()"
+snippet "dot" "dot" ri
+\dot{$1}$0
+endsnippet
+
+snippet sum "sum" w
+\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n}
+endsnippet
+
+snippet int "integral" w
+\int_{${1:-\infty}}^{${2:\infty}} $3 
+endsnippet
+
+###########
+# Symbols #
+###########
+snippet CC "C" iA
+\mathbb{C}
+endsnippet
+
+snippet RR "real" iA
+\mathbb{R}
+endsnippet
+
+snippet QQ "Q" iA
+\mathbb{Q}
+endsnippet
+
+snippet ZZ "Z" iA
+\mathbb{Z}
+endsnippet
+
+snippet NN "N" iA
+\mathbb{N}
+endsnippet
+
+snippet ... "ldots" iA
+\ldots
+endsnippet
+
+context "math()"
+snippet cc "subset" iA
+\subseteq
+endsnippet
+
+#################
+# PHYSICS STUFF #
+#################
+
+snippet dv "Derivative" w
+\dv{${1:${VISUAL}}}{${2}}
+endsnippet
+
+snippet pdv "Partial Derivative" w
+\pdv{${1:${VISUAL}}}{${2}}
+endsnippet
+
+context "math()"
+snippet dd "Differential operator" iA
+\dd{${1:x}}$0
+endsnippet
+
+snippet si "SI-Unit" w
+\SI{${1:${VISUAL}}}{${2}}
+endsnippet
+
+context "math()"
+snippet vu "unit vector" i
+\vu{${1:x}}$0
+endsnippet
+
+##############
+# MISC STUFF #
+##############
+
+snippet bf "bold text" i
+\textbf{$1}$0
+endsnippet
+
+snippet cal "mathcal text" i
+\mathcal{$1}$0
+endsnippet
+
+priority 10
+snippet fig "figure" w
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=$1\textwidth]{figs/$2}
+	\caption{$3}
+	\label{fig:$4}
+\end{figure}
+endsnippet
+
+priority 11
+snippet sfig "figure with side caption" w
+\begin{figure}[htb]
+	\begin{minipage}[c]{0.6\textwidth}
+        \includegraphics[width=\textwidth]{figs/$1}
+	\end{minipage} \hfill
+	\begin{minipage}[c]{0.38\textwidth}
+        \caption{$2}
+        \label{fig:$3}
+	\end{minipage} 
+\end{figure}
+endsnippet
+
+snippet mfig "multiple figures" w
+\begin{figure}[htb]
+	\centering
+	\subfloat[$1]{\includegraphics[width=$2\textwidth]{figs/$3}
+    \label{fig:$4}}
+    \qquad
+    \subfloat[$5]{\includegraphics[width=$6\textwidth]{figs/$7}
+    \label{fig:$8}}
+	\caption{$9}
+    \label{fig:$10}
+\end{figure}
+endsnippet
+
+snippet tabl "table" w
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{${1:c | c}}
+        $2
+    \end{tabular}
+    \caption{$3}
+	\label{tab:$4}
+\end{table}
+endsnippet
