@@ -40,7 +40,6 @@ set background=dark
 " https://github.com/lifepillar/vim-solarized8
 colorscheme solarized8_high
 set termguicolors
-set guifont=Inconsolata:h10
 
 " Vimtex
 let g:tex_flavor = 'latex'
@@ -63,7 +62,7 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 "let g:airline_theme='wombat'
 
 "Ultisnips triggers
-let g:UltiSnipsSnippetDirectories = ['C:\Users\boseranit\AppData\Local\nvim\plugged\ultisnips','C:\Users\boseranit\AppData\Local\nvim\my-snippets\UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['C:\Users\boser\AppData\Local\nvim\plugged\ultisnips','C:\Users\boser\AppData\Local\nvim\my-snippets\UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -73,7 +72,7 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Deoplete
 " set python host for neovim
-let g:python3_host_prog = 'C:\Users\boseranit\AppData\Local\Programs\Python\Python36\python.exe'
+let g:python3_host_prog = 'C:\tools\Anaconda3\python.exe'
 let g:deoplete#enable_at_startup = 1
 " get vimtex to work with deoplete
 call deoplete#custom#var('omni', 'input_patterns', {
@@ -82,6 +81,3 @@ call deoplete#custom#var('omni', 'input_patterns', {
 " get java autocomplete to work
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = []
-let g:deoplete#file#enable_buffer_path = 1
