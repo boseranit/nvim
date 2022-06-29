@@ -1,4 +1,6 @@
-copy into AppData\Local\nvim
+copy colour scheme into Neovim\share\nvim\runtime\pack\dist\opt
+
+copy everything apart from colour scheme into AppData\Local\nvim
 modify path directories in init.vim as needed
 PlugInstall
 PlugUpdate [name of plugin] for each plugin
