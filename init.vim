@@ -1,14 +1,16 @@
 " Vim-plug
 call plug#begin('$HOME/AppData/Local/nvim/plugged')
 Plug 'lervag/vimtex'
+Plug 'KeitaNakamura/tex-conceal.vim'
 
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 Plug 'artur-shaik/vim-javacomplete2'
+
+Plug 'tmsvg/pear-tree'
 
 " Autocomplete with Deoplete
 Plug 'Shougo/deoplete.nvim'
@@ -32,7 +34,7 @@ set colorcolumn=+1
 " Visual
 set number
 set relativenumber
-
+set mouse=a
 syntax on
 syntax enable
 set background=dark
@@ -50,10 +52,11 @@ let g:vimtex_compiler_latexmk = {
 let g:vimtex_compiler_progname = 'nvr' " need pip install neovim-remote
 let g:vimtex_view_general_viewer = 'SumatraPDF' 
 let g:vimtex_view_general_options='-reuse-instance -forward-search @tex @line @pdf'
-let g:vimtex_view_general_options_latexmk='-reuse-instance'
+" let g:vimtex_view_general_options_latexmk='-reuse-instance' " deprecated option
 " conceal commands
 set conceallevel=1
 let g:tex_conceal='abdmg'
+hi Conceal ctermbg=none
 
 " Vim airline show buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -65,7 +68,7 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:UltiSnipsSnippetDirectories = ['C:\Users\boser\AppData\Local\nvim\plugged\ultisnips','C:\Users\boser\AppData\Local\nvim\my-snippets\UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Java Autocomplete
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
@@ -81,3 +84,16 @@ call deoplete#custom#var('omni', 'input_patterns', {
 " get java autocomplete to work
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
+
+" Pear Tree auto-pair
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'}
+            \ }
+imap <BS> <Plug>(PearTreeBackspace)
+imap <CR> <Plug>(PearTreeExpand)
+imap <Esc> <Plug>(PearTreeFinishExpansion)
+" imap <Tab> <Plug>(PearTreeJump)
