@@ -1,7 +1,7 @@
 " Vim-plug
 call plug#begin('$HOME/AppData/Local/nvim/plugged')
 Plug 'lervag/vimtex'
-Plug 'KeitaNakamura/tex-conceal.vim'
+" Plug 'KeitaNakamura/tex-conceal.vim'
 
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
@@ -14,8 +14,8 @@ Plug 'tmsvg/pear-tree'
 
 " Autocomplete with Deoplete
 Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 
 call plug#end()
 " 'filetype plugin indent on' already called in plug#end()
@@ -30,6 +30,8 @@ set colorcolumn=+1
 " set nojoinspaces
 " highlight ExtraWhitespace ctermbg=red guibg=red
 " match ExtraWhitespace /\s\+$/
+" This unsets the last search pattern register by hitting return
+nnoremap <CR> :noh<CR><CR>
 
 " Visual
 set number
@@ -39,7 +41,8 @@ syntax on
 syntax enable
 set background=dark
 " colorscheme cloned in Neovim\share\nvim\runtime\pack\dist\opt
-" https://github.com/lifepillar/vim-solarized8
+" https://github.com/lifepillar/vim-solarized8 tag v1.3.0 
+" v1.4.0 causes vimtex bug with inline imap and snippets
 colorscheme solarized8_high
 set termguicolors
 
