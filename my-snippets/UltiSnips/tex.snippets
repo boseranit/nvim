@@ -1,14 +1,11 @@
 global !p
 def math():
 	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-
 def comment(): 
 	return vim.eval('vimtex#syntax#in_comment()') == '1'
-
 def env(name):
 	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
 	return x != '0' and y != '0'
-
 endglobal
 
 #########
@@ -285,12 +282,12 @@ snippet lr "paren" i
 endsnippet
 
 context "math()"
-snippet lr[ "bracket" i
+snippet lr[] "bracket" i
 \bracket{${1:${VISUAL}}}$0
 endsnippet
 
 context "math()"
-snippet lr{ "curly" i
+snippet lr{} "curly" i
 \set{${1:${VISUAL}}}$0
 endsnippet
 
@@ -350,7 +347,7 @@ endsnippet
 #################
 
 snippet dv "Derivative" w
-\dv{${1:${VISUAL}}}{${2}}
+\odv{${1:${VISUAL}}}{${2}}
 endsnippet
 
 snippet pdv "Partial Derivative" w
@@ -359,7 +356,7 @@ endsnippet
 
 context "math()"
 snippet dd "Differential operator" iA
-\dd{${1:x}}$0
+\odif{${1:x}}$0
 endsnippet
 
 snippet si "SI-Unit" w
