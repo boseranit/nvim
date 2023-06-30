@@ -48,9 +48,10 @@ endsnippet
 
 snippet sfig "figure with side caption" w
 \begin{figure}[htb]
+    \hfill
 	\begin{minipage}[c]{0.6\textwidth}
         \includegraphics[width=\textwidth]{figs/$1}
-	\end{minipage} \hfill
+	\end{minipage} 
 	\begin{minipage}[c]{0.38\textwidth}
         \caption{$2}
         \label{fig:$3}
