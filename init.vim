@@ -50,7 +50,7 @@ set termguicolors
 let g:tex_flavor = 'latex'
 " to make a build directory for latex files
 let g:vimtex_compiler_latexmk = { 
-    \ 'build_dir' : 'build' ,
+    \ 'out_dir' : 'build' ,
     \}
 let g:vimtex_compiler_progname = 'nvr' " need pip install neovim-remote
 let g:vimtex_view_general_viewer = 'SumatraPDF' 
@@ -68,7 +68,7 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 "let g:airline_theme='wombat'
 
 "Ultisnips triggers
-let g:UltiSnipsSnippetDirectories = ['C:\Users\boser\AppData\Local\nvim\plugged\ultisnips','C:\Users\boser\AppData\Local\nvim\my-snippets\UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['$HOME\AppData\Local\nvim\plugged\ultisnips','$HOME\AppData\Local\nvim\my-snippets\UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
