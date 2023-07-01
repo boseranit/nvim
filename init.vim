@@ -68,7 +68,7 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 "let g:airline_theme='wombat'
 
 "Ultisnips triggers
-let g:UltiSnipsSnippetDirectories = ['$HOME\AppData\Local\nvim\plugged\ultisnips','$HOME\AppData\Local\nvim\my-snippets\UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['C:\Users\Ranit\AppData\Local\nvim\plugged\ultisnips','C:\Users\Ranit\AppData\Local\nvim\my-snippets\UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
