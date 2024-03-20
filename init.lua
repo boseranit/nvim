@@ -10,7 +10,7 @@ vim.opt.shiftwidth = 4
 vim.opt.autoindent = true 
 vim.opt.textwidth = 80
 vim.opt.wrap = true
-vim.opt.colorcolumn = "81" -- +1 is convention
+-- vim.opt.colorcolumn = "81" -- +1 is convention
 
 local function map(mode, lhs, rhs, opts)
 local options = {noremap = true}
@@ -23,12 +23,14 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.background = 'dark'
--- colorscheme cloned in Neovim\share\nvim\runtime\pack\dist\opt
--- https://github.com/lifepillar/vim-solarized8 tag v1.3.0 
--- v1.4.0 causes vimtex bug with inline imap and snippets
-vim.cmd('colorscheme solarized8_high')
+require('okai').setup({})
+vim.cmd("colorscheme okai")
 vim.opt.termguicolors = true
 vim.cmd("syntax on")
+require'nvim-treesitter.configs'.setup{
+  ensure_installed = {"cpp", "c", "python"},
+  highlight={enable=true},
+}
 
 
 -- Vimtex

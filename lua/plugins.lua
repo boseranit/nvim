@@ -11,6 +11,9 @@ vim.call('plug#begin', PATH)
 
 	Plug 'tmsvg/pear-tree'
 
+	Plug 'okaihe/okai'
+	Plug('nvim-treesitter/nvim-treesitter', {['do']= ':TSUpdate'})
+
 	-- Autocomplete with cmp
 	-- completion
 	Plug 'neovim/nvim-lspconfig'
@@ -20,9 +23,6 @@ vim.call('plug#begin', PATH)
 	Plug 'hrsh7th/cmp-cmdline'
 	Plug 'hrsh7th/nvim-cmp'
 
-	-- to manage LSP servers and linters
-	Plug 'williamboman/mason.nvim'
-	
 	Plug 'SirVer/ultisnips'
 	Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 	
