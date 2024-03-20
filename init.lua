@@ -1,5 +1,9 @@
 require('plugins')
 
+-- disable netrw in favour of nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Tabs and spaces
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -77,3 +81,14 @@ vim.g.pear_tree_pairs = {
 -- vim.g.pear_tree_smart_openers = 1
 vim.g.pear_tree_smart_closers = 1
 vim.g.pear_tree_smart_backspace = 1
+
+
+-- enable nvim-tree
+require("nvim-tree").setup()
+map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle window" })
+
+-- mappings
+map("n", "<C-h>", "<C-w>h", { desc = "Switch Window left" })
+map("n", "<C-l>", "<C-w>l", { desc = "Switch Window right" })
+map("n", "<C-j>", "<C-w>j", { desc = "Switch Window down" })
+map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" })

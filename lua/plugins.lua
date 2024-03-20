@@ -6,19 +6,25 @@ vim.call('plug#begin', PATH)
 	Plug 'lervag/vimtex'
 	-- Plug 'KeitaNakamura/tex-conceal.vim'
 
-	Plug 'scrooloose/nerdtree'
+	Plug 'nvim-tree/nvim-tree.lua'
 	Plug 'bling/vim-airline'
-
-	Plug 'SirVer/ultisnips'
 
 	Plug 'tmsvg/pear-tree'
 
 	-- Autocomplete with cmp
 	-- completion
-	Plug 'hrsh7th/nvim-cmp'
+	Plug 'neovim/nvim-lspconfig'
 	Plug 'hrsh7th/cmp-nvim-lsp'
 	Plug 'hrsh7th/cmp-buffer'
 	Plug 'hrsh7th/cmp-path'
+	Plug 'hrsh7th/cmp-cmdline'
+	Plug 'hrsh7th/nvim-cmp'
+
+	-- to manage LSP servers and linters
+	Plug 'williamboman/mason.nvim'
+	
+	Plug 'SirVer/ultisnips'
+	Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 	
 vim.call('plug#end')
 -- 'filetype plugin indent on' already called in plug#end()
