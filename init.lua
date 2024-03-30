@@ -37,7 +37,7 @@ require'nvim-treesitter.configs'.setup{
 vim.g.tex_flavor = 'latex'
 -- to make a build directory for latex files
 vim.g.vimtex_compiler_latexmk = {
-        build_dir = "build",
+        out_dir = "build",
         options = {
           "-shell-escape",
           "-verbose",
@@ -80,6 +80,8 @@ vim.g.pear_tree_pairs = {
   ['"'] = { closer = '"' },
   ['/*'] = { closer = '*/' },
 }
+-- breaks dot repeatability of brackets but closes them immediately
+vim.g.pear_tree_repeatable_expand = 0
 -- vim.g.pear_tree_smart_openers = 1
 vim.g.pear_tree_smart_closers = 1
 vim.g.pear_tree_smart_backspace = 1

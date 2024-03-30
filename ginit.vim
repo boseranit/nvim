@@ -2,4 +2,4 @@
 
 " :GuiFont! Consolas:h10
 " :GuiFont! Ubuntu Mono:h10
-:GuiFont! Inconsolata LGC Nerd Font:h9
+:GuiFont! Inconsolata LGC Nerd Font:h10
