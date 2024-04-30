@@ -57,7 +57,11 @@ long long
 endsnippet
 
 snippet vi "vector int" w
-vector<int> 
+vector<int>
+endsnippet
+
+snippet vvi "vector vector int" w
+vetcor<vector<int>>
 endsnippet
 
 snippet vll "vector long long" w
@@ -65,24 +69,23 @@ vector<long long>
 endsnippet
 
 snippet vb "vector bool" w
-vector<bool> 
+vector<bool>
 endsnippet
 
 snippet pii "pair int int" w
-pair<int,int> 
+pair<int,int>
 endsnippet
 
 snippet piii "tuple int int int" w
-tuple<int,int,int> 
+tuple<int,int,int>
 endsnippet
 
 snippet vpii "vector pair int int" w
-vector<pair<int,int>> 
+vector<pair<int,int>>
 endsnippet
 
 snippet pb "vector push_back" i
-push_back($1);
-$0
+push_back($1);$0
 endsnippet
 
 ###########
@@ -90,18 +93,15 @@ endsnippet
 ###########
 
 snippet sort "sort ordered data" b
-sort($1.begin(), $1.end());
-$0
+sort($1.begin(), $1.end());$0
 endsnippet
 
 snippet lb "binary search geq" w
-lower_bound($1.begin(), $1.end(), $2);
-$0
+lower_bound($1.begin(), $1.end(), $2);$0
 endsnippet
 
 snippet ub "binary search >" w
-upper_bound($1.begin(), $1.end(), $2);
-$0
+upper_bound($1.begin(), $1.end(), $2);$0
 endsnippet
 
 snippet rev "greater comparator" i
@@ -110,10 +110,8 @@ endsnippet
 
 snippet nn "cout newline character" w
 << '\n';
-
 endsnippet
 
 snippet sp "cout space character" w
 << ' ';
-
 endsnippet
