@@ -7,11 +7,11 @@ vim.call('plug#begin', PATH)
 	-- Plug 'KeitaNakamura/tex-conceal.vim'
 
 	Plug 'nvim-tree/nvim-tree.lua'
-	Plug 'bling/vim-airline'
+	Plug 'nvim-lualine/lualine.nvim'
 
 	Plug 'tmsvg/pear-tree'
 
-	Plug 'okaihe/okai'
+	Plug 'rebelot/kanagawa.nvim'
 	Plug('nvim-treesitter/nvim-treesitter', {['do']= ':TSUpdate'})
 
 	-- Autocomplete with cmp

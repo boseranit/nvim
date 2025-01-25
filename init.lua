@@ -23,13 +23,12 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.background = 'dark'
-require('okai').setup({})
-vim.cmd("colorscheme okai")
+vim.cmd [[colorscheme kanagawa]]
 vim.opt.termguicolors = true
 vim.cmd("syntax on")
 require'nvim-treesitter.configs'.setup{
   ensure_installed = {"cpp", "c", "python"},
-  highlight={enable=true},
+  highlight={enable=true,disable={"latex"}},
 }
 
 
@@ -53,16 +52,29 @@ vim.opt.conceallevel = 1
 vim.g.tex_conceal = 'abdmg'
 vim.cmd('hi Conceal ctermbg=none')
 
--- vim airline
--- vim.g.airline_theme = 'darkness'
-vim.g.airline_powerline_fonts = true
-vim.g['airline#extensions#tabline#enabled'] = true
-vim.g['airline#extensions#nvimlsp#enabled'] = true
--- Show filename and parent directory
-vim.g['airline#extensions#tabline#formatter'] = 'short_path'
-vim.opt.laststatus = 2
--- we don't need mode since airline show it
-vim.opt.showmode = false
+-- lualine config 
+require('lualine').setup{
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {{'filename', path=1}},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {'nvim-tree'}
+}
 
 -- ultisnips triggers
 vim.g.UltiSnipsSnippetDirectories = {'C:/Users/boser/AppData/Local/nvim/plugged/ultisnips','C:/Users/boser/AppData/Local/nvim/my-snippets/UltiSnips'}

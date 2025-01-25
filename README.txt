@@ -11,5 +11,6 @@ do :checkhealth to see what needs to be done
 
 pip install neovim-remote and pynvim
 may need latexmk, perl
+Note: vimtex is better for tex highlighting than treesitter
 ensure path to sumatrapdf.exe is added to environment variables
 Run "cpanm -n Neovim::Ext" to get perl working with nvim
